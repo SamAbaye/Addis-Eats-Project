@@ -6,7 +6,7 @@ import CheckoutForm from "./CheckoutForm";
 
 async function CheckoutGate() {
   const user = await getSession();
-  if (!user) redirect("/signin?next=/checkout");
+  if (!user) redirect("/auth/signin?next=/checkout");
   return <CheckoutForm user={user} />;
 }
 

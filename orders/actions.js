@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { getSession } from "@/app/lib/session";
 import { getDish } from "@/app/lib/dishes";
 import { createOrder, getOrder, markCancelled } from "@/app/lib/orders";
-import { checkoutSchema } from "@/app/lib/checkoutSchema";
+import checkoutSchema  from "@/app/lib/checkoutSchema";
 
 export async function placeOrder(cart, details) {
   const user = await getSession();

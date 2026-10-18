@@ -18,7 +18,7 @@ export default async function SignUpPage({ searchParams }) {
       <p className="mt-4 text-center text-sm text-gray-600">
         Already have an account?{" "}
         <Link
-          href={`/signin?next=${encodeURIComponent(destination)}`}
+          href={`/auth/signin?next=${encodeURIComponent(destination)}`}
           className="font-medium text-amber-700 hover:underline"
         >
           Sign in
