@@ -4,13 +4,15 @@ import { getSession } from "@/app/lib/session";
 import { getOrdersFor } from "@/app/lib/orders";
 import { cancelOrder } from "./actions";
 import AuthNav from "@/app/component/AuthNav";
-
 export default async function OrdersPage() {
   const user = await getSession();
   if (!user) redirect("/signin?next=/orders");
 
   
   const orders = getOrdersFor(user.id);
+  
+  
+
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
@@ -99,6 +101,26 @@ export default async function OrdersPage() {
           );
         })}
       </ul>
+
+      <div className="mt-4 h-72">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Accessible Chart Data (Screen Reader Friendly)</h3>
+          <table className="min-w-full text-xs text-left border text-gray-600">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="p-2 border">Date</th>
+                <th className="p-2 border">Orders Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lineData.map((row) => (
+                <tr key={row.date} className="border-b">
+                  <td className="p-2 border">{row.date}</td>
+                  <td className="p-2 border">{row.count} orders</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
     </main>
-  );
+);
 }
