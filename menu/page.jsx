@@ -1,24 +1,8 @@
 import { Suspense } from "react";
-import fs from "fs/promises";
-import path from "path";
 import FilterShell from "./dish/FilterShell";
 
 
-type Item = Record<string, unknown>;
-type Category = { category: string; items: Item[] };
-
-async function getMenuData(): Promise<{ categories: Category[] }> {
-  const filePath = path.join(process.cwd(), "public", "menu.json");
-  const fileContents = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(fileContents);
-}
-
 export default async function MenuPage() {
-  const data = await getMenuData();
-
-  const dishes = data.categories.flatMap((cat) =>
-    cat.items.map((item) => ({ ...item, category: cat.category })),
-  );
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -38,7 +22,7 @@ export default async function MenuPage() {
           </p>
         }
       >
-        <FilterShell dishes={dishes} />
+        <FilterShell />
       </Suspense>
     </main>
   );

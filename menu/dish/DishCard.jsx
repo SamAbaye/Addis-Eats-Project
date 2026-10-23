@@ -5,19 +5,6 @@ import Image from "next/image";
 import foodImage from '@/public/assets/habesha_food.jpg'
 import useCartStore  from "@/app/store/useCartStore";
 
-type DishCardProps = {
-    id: string;
-    slug: string;
-    nameEn: string;
-    nameAm?: string;
-    priceETB: number;
-    spiceLevel?: string;
-    isFasting?: boolean;
-    isSpecial?: boolean;
-    category?: string;
-};
-
-
 const DishCard = ({
     id,
     nameEn,
@@ -27,7 +14,9 @@ const DishCard = ({
     isFasting,
     isSpecial,
     category,
-}: DishCardProps) => {
+}) => {
+    
+
     const secondaryBadge = isFasting ? { label: "Fasting", className: "badge-fasting" } : null;
     
     const { addItem } = useCartStore();
@@ -95,7 +84,7 @@ const DishCard = ({
             </button>
         </article>
     );
-};
+}
 
 
 export default DishCard;

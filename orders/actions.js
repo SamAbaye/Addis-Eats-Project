@@ -1,6 +1,4 @@
 "use server";
-
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/app/lib/session";
 import { getDish } from "@/app/lib/dishes";

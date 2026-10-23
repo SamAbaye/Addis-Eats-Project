@@ -1,27 +1,46 @@
 'use client'
 import { useState, useMemo } from "react"
-import DishCard from '../dish/DishCard';
+import DishList from '../dish/DishList';
 import CategoryBar from "../category/CategoryBar";
+import useSWR from "swr";
+import Spinner from "./Spinner";
 
-function FilterShell ({ dishes }) {
+const url = '/menu.json';
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
+function  FilterShell () {
+    const { data, error, isLoading } = useSWR(url, fetcher);
+
     const [filter, setFilter] = useState("All");
+    
+     
+    const dishes = useMemo(() => {
+      return (
+        data?.categories?.flatMap((cat) =>
+          cat.items.map((item) => ({ ...item, category: cat.category })),
+        ) ?? []
+      );
+    }, [data]);
 
     const categories = useMemo(() => {
-        if (filter === "All") return dishes;
-        return dishes.filter((d) => d.category === filter);
-    }, [filter, dishes]);    
+      if (filter === "All") return dishes;
+      return dishes.filter((d) => d.category === filter);
+    }, [filter, dishes]);
 
+    
+    if (isLoading) return <Spinner />;
+    if (error) return <p>Could not load the Menu.</p>;
+  
     return (
-      <div className="">
+      <div className="w-auto">
         <CategoryBar
           categories={categories}
           selected={filter}
           onSelect={setFilter}
         />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((d) => (
-            <DishCard key={d.id} {...d} category={d.category} />
-          ))}
+        <div className="">
+          <DishList dishes={categories} />
         </div>
       </div>
     );

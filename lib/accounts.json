@@ -4,20 +4,20 @@
     "name": "Almaz",
     "phone": "0911000001",
     "role": "customer",
-    "passwordHash": "scrypt$7d7734e225822fede9e2a9b4283d1979$250f8d76b2e895d485ee2b4e8e15ec666d8375f516841de617e57e74e6a03188220c4eb51b56c9372c743e3381de138584dfa9533b5e1606b62858c38d81d95e"
+    "password": "password"
   },
   {
     "id": "usr_2",
     "name": "Dawit",
     "phone": "0911000002",
     "role": "customer",
-    "passwordHash": "scrypt$eb302dee52d0cdf3932c9bb8e8666187$73325df7781851cf0a879d7cdfed9280a063782af8799d8dcec30b41f33ed56e5791e99f28d016c18b5689bcb84df88de33cece388cac788050df4cff479b01a"
+    "password": "password"
   },
   {
     "id": "usr_3",
     "name": "Chef Hana",
     "phone": "0911000003",
     "role": "staff",
-    "passwordHash": "scrypt$62f929da5af32e9c0788bb027b5e89eb$e42b144c3fda0b84410e6f9cad1ee0aaa46b47f3f8063309ce22b83557c859384814fc1d828e784b3d9e1ee155f9fb31184c4c768bb5b1ec623759bd7cac9b5a"
+    "password": "password"
   }
 ]

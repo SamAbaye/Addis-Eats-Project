@@ -13,10 +13,6 @@ export default async function AuthNav() {
     >
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-gray-600 divide-x divide-gray-200">
-          <Link href="/menu" className="hover:text-blue-600 transition-colors">
-            Menu
-          </Link>
-
           <Link
             href="/checkout"
             className="pl-4 hover:text-blue-600 transition-colors"
@@ -44,9 +40,9 @@ export default async function AuthNav() {
         <div className="text-sm font-medium text-gray-700">
           {user ? (
             <form action={signOut} className="flex items-center gap-3">
-              <span>
-                Signed in as{" "}
-                <strong className="text-gray-900 font-semibold">
+              <span className="mr-2">
+                Signed in as {" "}
+                <strong className="text-gray-900 font-semibold m-2">
                   {user.name}
                 </strong>
               </span>
@@ -57,13 +53,8 @@ export default async function AuthNav() {
                 Sign out
               </button>
             </form>
-          ) : (
-            <Link
-              href="/signin"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-xs font-semibold shadow-sm"
-            >
-              Sign in
-            </Link>
+          ): (
+            null
           )}
         </div>
       </div>

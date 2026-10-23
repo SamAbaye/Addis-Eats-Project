@@ -2,17 +2,17 @@
 
 import { redirect } from "next/navigation";
 import { createUser, normalizePhone } from "@/app/lib/users";
-import { createSession, safeNext } from "@/app/lib/session";
-
+import { createSession } from "@/app/lib/session";
+import {getSafeNextPath} from '@/app/lib/redirects';
 
 export async function signUp(_previousState, formData) {
   const name = String(formData.get("name") ?? "").trim();
   const phone = normalizePhone(formData.get("phone"));
   const password = String(formData.get("password") ?? "");
   const confirm = String(formData.get("confirm") ?? "");
-  const next = String(formData.get("next") ?? "");
+  const next = getSafeNextPath(formData.get("next") ?? "");
 
-  // Keep what they typed (never the password) so a typo does not wipe the form.
+
   const values = { name, phone: String(formData.get("phone") ?? "") };
 
   if (name.length < 2 || name.length > 60) {
@@ -33,7 +33,6 @@ export async function signUp(_previousState, formData) {
   if (!user) {
     return { error: "That phone number already has an account. Sign in instead.", values };
   }
-
   await createSession(user.id); 
-  redirect(safeNext(next)); 
+  redirect(next); 
 }

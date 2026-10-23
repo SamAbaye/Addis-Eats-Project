@@ -1,4 +1,3 @@
-// app/menu/layout.jsx
 import AuthNav from "@/app/component/AuthNav";
 import { Suspense } from "react";
 export default function MenuLayout({ children }) {

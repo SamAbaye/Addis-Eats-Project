@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
-import { getSession } from "@/lib/session";
-import { getOrder } from "@/lib/orders";
-import AuthNav from "@/app/components/AuthNav";
+import { getSession } from "@/app/lib/session";
+import { getOrder } from "@/app/lib/orders";
+import AuthNav from "@/app/component/AuthNav";
 import OrderStatus from "./OrderStatus";
 
 export default async function OrderPage({ params }) {

@@ -1,16 +1,17 @@
-import { getMenuData } from "../../lib/menu";
+
+import React from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import image from "@/public/assets/habesha_food.jpg";
+// import useSWR from "swr";
 
-
-
-export async function generateStaticParams() {
-  const data = await getMenuData();
-  const dishes = data.categories.flatMap((cat) => cat.items);
-  return dishes.map((d) => ({ id: d.id }));
-}
+const fetcher = (url) => fetch(url).then((r) => r.json());
+// export function generateStaticParams({id}) {
+//   const { data, error, isLoading } = useSWR(`/api/dishes/${id}`, fetcher);
+//   const dishes = data.categories.flatMap((cat) => cat.items);
+//   return dishes.map((d) => ({ id: d.id }));
+// }
 
 function getSpiceRating(spiceLevel) {
   if (!spiceLevel) return 0;
@@ -18,9 +19,8 @@ function getSpiceRating(spiceLevel) {
   return match ? Number(match[1]) : 0;
 }
 
-export default async function SingleDishPage({ params }) {
-  const { id } = await params;
-  const data = await getMenuData();
+export default function SingleDishPage({ id }) {
+  const { data} = useSWR(`/api/dishes/${id}`, fetcher);
   const dishes = data.categories.flatMap((cat) =>
     cat.items.map((item) => ({
       ...item,
