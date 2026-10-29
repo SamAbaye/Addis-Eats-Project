@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getSession} from "@/app/lib/session";
+import { getSession } from "@/app/lib/session";
 import SignUpForm from "./SignUpForm";
-import {getSafeNextPath} from '@/app/lib/redirects';
+import { getSafeNextPath } from "@/app/lib/redirects";
 
+export const metadata = {
+  title: "Create an account",
+  description: "Create an Addis Eats account to order Ethiopian food and keep track of your deliveries.",
+};
 
 export default async function SignUpPage({ searchParams }) {
   const { next } = await searchParams;
-  
-
-  
   const user = await getSession();
   if (user) redirect(getSafeNextPath(next));
 
@@ -19,9 +20,7 @@ export default async function SignUpPage({ searchParams }) {
       <SignUpForm next={next} />
       <p className="mt-4 text-center text-sm text-gray-600">
         Already have an account?{" "}
-      <Link href={next ? `/auth/signin?next=${encodeURIComponent(next)}` : "/auth/signin"}>
-        Sign in
-      </Link>
+        <Link href={next ? `/auth/signin?next=${encodeURIComponent(next)}` : "/auth/signin"}>Sign in</Link>
       </p>
     </main>
   );

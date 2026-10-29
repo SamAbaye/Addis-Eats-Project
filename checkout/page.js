@@ -1,8 +1,12 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { getSession } from "@/app/lib/session"; 
+import { getSession } from "@/app/lib/session";
 import CheckoutForm from "./CheckoutForm";
 
+export const metadata = {
+  title: "Checkout",
+  description: "Confirm your delivery details and place your Addis Eats order securely.",
+};
 
 async function CheckoutGate() {
   const user = await getSession();
@@ -11,9 +15,5 @@ async function CheckoutGate() {
 }
 
 export default function CheckoutPage() {
-  return (
-    <Suspense fallback={<p>Loading checkout…</p>}>
-      <CheckoutGate />
-    </Suspense>
-  );
+  return <Suspense fallback={<p>Loading checkout…</p>}><CheckoutGate /></Suspense>;
 }

@@ -3,17 +3,36 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from '@/public/assets/Addis Eats.png'
+import { useSearchParams, useRouter } from "next/navigation";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/menu", label: "Menu" },
-  { href: "/cart", label: "Cart" },
+    { href: "/", label: "Home" },
+    { href: "/menu", label: "Menu" },
+    { href: "/cart", label: "Cart" },
+    { href: "/dashboard", label: "Dashboard" },
 ];
 
 export default function Header() {
   // const { count, total } = useCart();
   // const hydrated = useHydrated();
 
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const query = searchParams.get("q") || "";
+
+    const handleSearch = (term) => {
+        const params = new URLSearchParams(searchParams.toString());
+        
+        if (term) {
+            params.set('q', term);
+        } else {
+            params.delete('q'); 
+        }
+        
+        router.replace(`/menu?${params.toString()}`, { scroll: false });
+
+    };
     return (
         <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/90 backdrop-blur">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
@@ -25,6 +44,7 @@ export default function Header() {
                 height={40}
                 className="rounded-md"
                 priority
+                sizes="(max-width: 768px) 100vw, 400px"
                 />
                 <span className="text-sm font-semibold leading-tight text-stone-900">
                 Addis <br />
@@ -68,6 +88,15 @@ export default function Header() {
                     </Link>
                 </li>
                 </ul>
+                <div className="w-full max-w-md mx-4">
+                    <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    placeholder="Search for dishes, starters, desserts..."
+                    className="w-full px-4 py-2 text-sm border border-gray-300 rounded-full focus:outline-none focus:border-red-400"
+                    />
+                </div>
             </nav>
             </div>
         </header>

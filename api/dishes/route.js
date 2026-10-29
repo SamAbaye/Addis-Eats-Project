@@ -11,7 +11,7 @@
 //   }
 //   return Response.json(pageDishes(searchParams.get("page")));
 // }
-const url = 'https://addis-eats-backend.onrender.com/menu/';
+const url = '/menu.json';
 export async function GET(request) {
   try {
     const response = await fetch(url);

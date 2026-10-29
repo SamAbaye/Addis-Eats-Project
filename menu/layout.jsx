@@ -1,5 +1,6 @@
 import AuthNav from "@/app/component/AuthNav";
 import { Suspense } from "react";
+
 export default function MenuLayout({ children }) {
     return (
     <div className="min-h-full flex flex-col" >

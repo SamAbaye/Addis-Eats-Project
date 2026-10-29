@@ -36,7 +36,6 @@ export default function Checkout({ user }) {
     useEffect(() => {
         setMounted(true);
 
-       
         if (user) {
         reset({
             fullName: user.name || "",
