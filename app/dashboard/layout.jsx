@@ -9,7 +9,13 @@ export const metadata = {
 export default async function DashboardLayout({ children }) {
   const user = await getSession();
 
-  if (!user || user.role !== "staff") redirect("/auth/signin?next=/dashboard");
+  if (!user ) {
+      redirect("/auth/signin?next=/dashboard");
+  } else {
+      if (user.role !== "staff") {
+          redirect("/menu");
+      } 
+  }
 
 
   return (

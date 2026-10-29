@@ -1,4 +1,5 @@
 import accounts from "./accounts.json";
+import { randomUUID } from "node:crypto";
 
 const users = (globalThis.__addisUsers ??= accounts.map((u) => ({ ...u })));
 
@@ -29,7 +30,7 @@ export function authenticate(phone, password) {
 export function createUser({ name, phone, password }) {
   if (findUserByPhone(phone)) return null;
   const user = {
-    id: `usr_${users.length + 1}`,
+    id: `usr_${randomUUID()}`,
     name,
     phone,
     role: "customer",
