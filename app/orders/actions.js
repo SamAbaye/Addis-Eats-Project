@@ -24,6 +24,8 @@ export async function placeOrder(cart, details) {
   if (items.length === 0) return { error: "Your cart is empty." };
 
   const order = createOrder(user.id, items, parsed.data); 
+  revalidatePath("/orders");
+  revalidatePath(`/orders/${order.id}`);
   return { ok: true, orderId: order.id };
 }
 

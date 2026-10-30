@@ -71,9 +71,17 @@ export default function Checkout({ user }) {
             <p className="mb-4">
             Your order ID is: <strong>{placedOrder?.id}</strong>
             </p>
+            <div className="flex flex-col items-center gap-3">
+            <Link href={`/orders/${placedOrder.id}`} className="text-blue-600 underline">
+            Track this order
+            </Link>
+            <Link href="/orders" className="text-blue-600 underline">
+            View all orders
+            </Link>
             <Link href="/" className="text-blue-500 underline">
             Return Home
             </Link>
+            </div>
         </div>
         );
     }
