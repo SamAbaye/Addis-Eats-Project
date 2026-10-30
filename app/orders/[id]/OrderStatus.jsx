@@ -10,7 +10,7 @@ export default function OrderStatus({ id, initial }) {
   });
 
   
-  if (isLoading) return <p>Loading…</p>;
+  if (!data && isLoading) return <p>Loading…</p>;
   if (error?.status === 401) return <p>Your session ended. Please sign in again.</p>;
   if (error?.status === 403 || error?.status === 404) return <p>That order is not available.</p>;
   if (error) return <p>Could not load the order.</p>;

@@ -22,6 +22,7 @@ export const metadata = {
     siteName: "Addis Eats",
     title: "Addis Eats | Ethiopian food in Addis Ababa",
     description: "Discover Ethiopian favourites and order freshly prepared food from Addis Eats in Addis Ababa.",
+    
   },
 };
 
